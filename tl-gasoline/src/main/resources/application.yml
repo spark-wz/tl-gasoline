@@ -1,0 +1,103 @@
+spring:
+  profiles:
+    active: dev
+
+---
+#开发环境配置
+spring:
+  profiles: dev
+  datasource:
+    mysqldb:
+      name: mysqldb
+      jdbc-url: jdbc:mysql://39.97.227.216:3306/gasoline?useUnicode=true&useSSL=false&characterEncoding=utf8
+      username: root
+      password: Platform@123
+      driver-class-name: com.mysql.cj.jdbc.Driver
+      type: com.zaxxer.hikari.HikariDataSource
+      hikari:
+        minimum-idle: 3
+        auto-commit: true
+        idle-timeout: 10000
+        pool-name: DatebookHikariCP
+        max-lifetime: 1800000
+    sqlserver1db:
+      name: sqlserver1db
+      jdbc-url: jdbc:sqlserver://39.97.227.216:1433;DatabaseName=PCS06
+      username: sa
+      password: Geyifei212
+      driver-class-name: com.microsoft.sqlserver.jdbc.SQLServerDriver
+    sqlserver2db:
+      name: sqlserver2db
+      jdbc-url: jdbc:sqlserver://39.97.227.216:1433;DatabaseName=PCS06
+      username: sa
+      password: Geyifei212
+      driver-class-name: com.microsoft.sqlserver.jdbc.SQLServerDriver
+    sqlserver3db:
+      name: sqlserver3db
+      jdbc-url: jdbc:sqlserver://39.97.227.216:1433;DatabaseName=PCS06
+      username: sa
+      password: Geyifei212
+      driver-class-name: com.microsoft.sqlserver.jdbc.SQLServerDriver
+mybatis:
+  mapper-locations: classpath:mapping/*Mapper.xml
+  type-aliases-package: com.military.gasoline.entity
+
+pagehelper:
+  helperDialect: mysql
+  reasonable: true
+  supportMethodsArguments: true
+  params: count=countSql
+
+server:
+  port: 8180
+
+
+
+---
+#正式环境配置
+spring:
+  profiles: prod
+  datasource:
+    mysqldb:
+      name: mysqldb
+      jdbc-url: jdbc:mysql://39.97.227.216:3306/gasoline?useUnicode=true&useSSL=false&characterEncoding=utf8
+      username: root
+      password: Platform@123
+      driver-class-name: com.mysql.cj.jdbc.Driver
+      type: com.zaxxer.hikari.HikariDataSource
+      hikari:
+        minimum-idle: 3
+        auto-commit: true
+        idle-timeout: 10000
+        pool-name: DatebookHikariCP
+        max-lifetime: 1800000
+    sqlserver1db:
+      name: sqlserver1db
+      jdbc-url: jdbc:sqlserver://39.97.227.216:1433;DatabaseName=PCS06
+      username: sa
+      password: Geyifei212
+      driver-class-name: com.microsoft.sqlserver.jdbc.SQLServerDriver
+    sqlserver2db:
+      name: sqlserver2db
+      jdbc-url: jdbc:sqlserver://39.97.227.216:1433;DatabaseName=PCS06
+      username: sa
+      password: Geyifei212
+      driver-class-name: com.microsoft.sqlserver.jdbc.SQLServerDriver
+    sqlserver3db:
+      name: sqlserver3db
+      jdbc-url: jdbc:sqlserver://39.97.227.216:1433;DatabaseName=PCS06
+      username: sa
+      password: Geyifei212
+      driver-class-name: com.microsoft.sqlserver.jdbc.SQLServerDriver
+mybatis:
+  mapper-locations: classpath:mapping/*Mapper.xml
+  type-aliases-package: com.military.gasoline.entity
+
+pagehelper:
+  helperDialect: mysql
+  reasonable: true
+  supportMethodsArguments: true
+  params: count=countSql
+
+server:
+  port: 8180

@@ -1,0 +1,306 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.unicorn.tlgasoline.dao.ShuiluSfyMapper" >
+  <resultMap id="BaseResultMap" type="com.unicorn.tlgasoline.entity.ShuiluSfy" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="sfy" property="sfy" jdbcType="TINYINT" />
+    <result column="type" property="type" jdbcType="BIT" />
+    <result column="this_cumulative" property="thisCumulative" jdbcType="DECIMAL" />
+    <result column="start_time" property="startTime" jdbcType="CHAR" />
+    <result column="Time" property="time" jdbcType="CHAR" />
+    <result column="Liusu" property="liusu" jdbcType="CHAR" />
+    <result column="Midu" property="midu" jdbcType="CHAR" />
+    <result column="Wendu" property="wendu" jdbcType="CHAR" />
+    <result column="Leiji" property="leiji" jdbcType="CHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    id, sfy, type, this_cumulative, start_time, Time, Liusu, Midu, Wendu, Leiji
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.unicorn.tlgasoline.entity.ShuiluSfyExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from SHUILU_SFY
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from SHUILU_SFY
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from SHUILU_SFY
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.unicorn.tlgasoline.entity.ShuiluSfyExample" >
+    delete from SHUILU_SFY
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.unicorn.tlgasoline.entity.ShuiluSfy" >
+    insert into SHUILU_SFY (id, sfy, type, this_cumulative, 
+      start_time, Time, Liusu, Midu, 
+      Wendu, Leiji)
+    values (#{id,jdbcType=BIGINT}, #{sfy,jdbcType=TINYINT}, #{type,jdbcType=BIT}, #{thisCumulative,jdbcType=DECIMAL}, 
+      #{startTime,jdbcType=CHAR}, #{time,jdbcType=CHAR}, #{liusu,jdbcType=CHAR}, #{midu,jdbcType=CHAR}, 
+      #{wendu,jdbcType=CHAR}, #{leiji,jdbcType=CHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.unicorn.tlgasoline.entity.ShuiluSfy" >
+    insert into SHUILU_SFY
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="sfy != null" >
+        sfy,
+      </if>
+      <if test="type != null" >
+        type,
+      </if>
+      <if test="thisCumulative != null" >
+        this_cumulative,
+      </if>
+      <if test="startTime != null" >
+        start_time,
+      </if>
+      <if test="time != null" >
+        Time,
+      </if>
+      <if test="liusu != null" >
+        Liusu,
+      </if>
+      <if test="midu != null" >
+        Midu,
+      </if>
+      <if test="wendu != null" >
+        Wendu,
+      </if>
+      <if test="leiji != null" >
+        Leiji,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="sfy != null" >
+        #{sfy,jdbcType=TINYINT},
+      </if>
+      <if test="type != null" >
+        #{type,jdbcType=BIT},
+      </if>
+      <if test="thisCumulative != null" >
+        #{thisCumulative,jdbcType=DECIMAL},
+      </if>
+      <if test="startTime != null" >
+        #{startTime,jdbcType=CHAR},
+      </if>
+      <if test="time != null" >
+        #{time,jdbcType=CHAR},
+      </if>
+      <if test="liusu != null" >
+        #{liusu,jdbcType=CHAR},
+      </if>
+      <if test="midu != null" >
+        #{midu,jdbcType=CHAR},
+      </if>
+      <if test="wendu != null" >
+        #{wendu,jdbcType=CHAR},
+      </if>
+      <if test="leiji != null" >
+        #{leiji,jdbcType=CHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.unicorn.tlgasoline.entity.ShuiluSfyExample" resultType="java.lang.Integer" >
+    select count(*) from SHUILU_SFY
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update SHUILU_SFY
+    <set >
+      <if test="record.id != null" >
+        id = #{record.id,jdbcType=BIGINT},
+      </if>
+      <if test="record.sfy != null" >
+        sfy = #{record.sfy,jdbcType=TINYINT},
+      </if>
+      <if test="record.type != null" >
+        type = #{record.type,jdbcType=BIT},
+      </if>
+      <if test="record.thisCumulative != null" >
+        this_cumulative = #{record.thisCumulative,jdbcType=DECIMAL},
+      </if>
+      <if test="record.startTime != null" >
+        start_time = #{record.startTime,jdbcType=CHAR},
+      </if>
+      <if test="record.time != null" >
+        Time = #{record.time,jdbcType=CHAR},
+      </if>
+      <if test="record.liusu != null" >
+        Liusu = #{record.liusu,jdbcType=CHAR},
+      </if>
+      <if test="record.midu != null" >
+        Midu = #{record.midu,jdbcType=CHAR},
+      </if>
+      <if test="record.wendu != null" >
+        Wendu = #{record.wendu,jdbcType=CHAR},
+      </if>
+      <if test="record.leiji != null" >
+        Leiji = #{record.leiji,jdbcType=CHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update SHUILU_SFY
+    set id = #{record.id,jdbcType=BIGINT},
+      sfy = #{record.sfy,jdbcType=TINYINT},
+      type = #{record.type,jdbcType=BIT},
+      this_cumulative = #{record.thisCumulative,jdbcType=DECIMAL},
+      start_time = #{record.startTime,jdbcType=CHAR},
+      Time = #{record.time,jdbcType=CHAR},
+      Liusu = #{record.liusu,jdbcType=CHAR},
+      Midu = #{record.midu,jdbcType=CHAR},
+      Wendu = #{record.wendu,jdbcType=CHAR},
+      Leiji = #{record.leiji,jdbcType=CHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.unicorn.tlgasoline.entity.ShuiluSfy" >
+    update SHUILU_SFY
+    <set >
+      <if test="sfy != null" >
+        sfy = #{sfy,jdbcType=TINYINT},
+      </if>
+      <if test="type != null" >
+        type = #{type,jdbcType=BIT},
+      </if>
+      <if test="thisCumulative != null" >
+        this_cumulative = #{thisCumulative,jdbcType=DECIMAL},
+      </if>
+      <if test="startTime != null" >
+        start_time = #{startTime,jdbcType=CHAR},
+      </if>
+      <if test="time != null" >
+        Time = #{time,jdbcType=CHAR},
+      </if>
+      <if test="liusu != null" >
+        Liusu = #{liusu,jdbcType=CHAR},
+      </if>
+      <if test="midu != null" >
+        Midu = #{midu,jdbcType=CHAR},
+      </if>
+      <if test="wendu != null" >
+        Wendu = #{wendu,jdbcType=CHAR},
+      </if>
+      <if test="leiji != null" >
+        Leiji = #{leiji,jdbcType=CHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.unicorn.tlgasoline.entity.ShuiluSfy" >
+    update SHUILU_SFY
+    set sfy = #{sfy,jdbcType=TINYINT},
+      type = #{type,jdbcType=BIT},
+      this_cumulative = #{thisCumulative,jdbcType=DECIMAL},
+      start_time = #{startTime,jdbcType=CHAR},
+      Time = #{time,jdbcType=CHAR},
+      Liusu = #{liusu,jdbcType=CHAR},
+      Midu = #{midu,jdbcType=CHAR},
+      Wendu = #{wendu,jdbcType=CHAR},
+      Leiji = #{leiji,jdbcType=CHAR}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+
+  <select id="selectByTableName" resultMap="BaseResultMap" parameterType="com.unicorn.tlgasoline.dto.SfyQueryParam" >
+    select *
+    from ${param.tableName} where Time > #{param.time,jdbcType=CHAR} order by Time;
+  </select>
+
+  <select id="selectShuiluSfyVoList" resultType="com.unicorn.tlgasoline.dto.SfyVo" parameterType="com.unicorn.tlgasoline.dto.BaseQueryParam" >
+    select sfy as sfyNumber, sum(if(type=1,this_cumulative,0)) as sendOilCount, sum(if(type=0,this_cumulative,0)) as receiveOilCount
+    from SHUILU_SFY
+    where id > 0
+    <if test="param.startTime != null and param.startTime != ''" >
+      <![CDATA[ and Time >= #{param.startTime} ]]>
+    </if>
+    <if test="param.endTime != null and param.endTime != ''" >
+      <![CDATA[ and Time <= #{param.endTime} ]]>
+    </if>
+    GROUP BY sfy order by sfy
+  </select>
+</mapper>

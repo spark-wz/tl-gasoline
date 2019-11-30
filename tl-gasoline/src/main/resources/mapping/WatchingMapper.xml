@@ -1,0 +1,349 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.unicorn.tlgasoline.dao.WatchingMapper" >
+  <resultMap id="BaseResultMap" type="com.unicorn.tlgasoline.entity.Watching" >
+    <result column="HWH" property="hwh" jdbcType="INTEGER" />
+    <result column="Dyth" property="dyth" jdbcType="INTEGER" />
+    <result column="Dylh" property="dylh" jdbcType="INTEGER" />
+    <result column="TDH" property="tdh" jdbcType="VARCHAR" />
+    <result column="YPMC" property="ypmc" jdbcType="VARCHAR" />
+    <result column="YBXS" property="ybxs" jdbcType="REAL" />
+    <result column="CHEHAO" property="chehao" jdbcType="VARCHAR" />
+    <result column="DFGS" property="dfgs" jdbcType="INTEGER" />
+    <result column="YFGS" property="yfgs" jdbcType="INTEGER" />
+    <result column="YFL" property="yfl" jdbcType="REAL" />
+    <result column="SFL" property="sfl" jdbcType="REAL" />
+    <result column="WENDU" property="wendu" jdbcType="REAL" />
+    <result column="MIDU" property="midu" jdbcType="REAL" />
+    <result column="FYSTYLE" property="fystyle" jdbcType="INTEGER" />
+    <result column="FA" property="fa" jdbcType="INTEGER" />
+    <result column="FB" property="fb" jdbcType="INTEGER" />
+    <result column="YYBJ" property="yybj" jdbcType="INTEGER" />
+    <result column="JDBJ" property="jdbj" jdbcType="INTEGER" />
+    <result column="YB" property="yb" jdbcType="INTEGER" />
+    <result column="STATE" property="state" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    HWH, Dyth, Dylh, TDH, YPMC, YBXS, CHEHAO, DFGS, YFGS, YFL, SFL, WENDU, MIDU, FYSTYLE, 
+    FA, FB, YYBJ, JDBJ, YB, STATE
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.unicorn.tlgasoline.entity.WatchingExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from Watching
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <delete id="deleteByExample" parameterType="com.unicorn.tlgasoline.entity.WatchingExample" >
+    delete from Watching
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.unicorn.tlgasoline.entity.Watching" >
+    insert into Watching (HWH, Dyth, Dylh, 
+      TDH, YPMC, YBXS, CHEHAO, 
+      DFGS, YFGS, YFL, SFL, 
+      WENDU, MIDU, FYSTYLE, FA, 
+      FB, YYBJ, JDBJ, YB, 
+      STATE)
+    values (#{hwh,jdbcType=INTEGER}, #{dyth,jdbcType=INTEGER}, #{dylh,jdbcType=INTEGER}, 
+      #{tdh,jdbcType=VARCHAR}, #{ypmc,jdbcType=VARCHAR}, #{ybxs,jdbcType=REAL}, #{chehao,jdbcType=VARCHAR}, 
+      #{dfgs,jdbcType=INTEGER}, #{yfgs,jdbcType=INTEGER}, #{yfl,jdbcType=REAL}, #{sfl,jdbcType=REAL}, 
+      #{wendu,jdbcType=REAL}, #{midu,jdbcType=REAL}, #{fystyle,jdbcType=INTEGER}, #{fa,jdbcType=INTEGER}, 
+      #{fb,jdbcType=INTEGER}, #{yybj,jdbcType=INTEGER}, #{jdbj,jdbcType=INTEGER}, #{yb,jdbcType=INTEGER}, 
+      #{state,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.unicorn.tlgasoline.entity.Watching" >
+    insert into Watching
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="hwh != null" >
+        HWH,
+      </if>
+      <if test="dyth != null" >
+        Dyth,
+      </if>
+      <if test="dylh != null" >
+        Dylh,
+      </if>
+      <if test="tdh != null" >
+        TDH,
+      </if>
+      <if test="ypmc != null" >
+        YPMC,
+      </if>
+      <if test="ybxs != null" >
+        YBXS,
+      </if>
+      <if test="chehao != null" >
+        CHEHAO,
+      </if>
+      <if test="dfgs != null" >
+        DFGS,
+      </if>
+      <if test="yfgs != null" >
+        YFGS,
+      </if>
+      <if test="yfl != null" >
+        YFL,
+      </if>
+      <if test="sfl != null" >
+        SFL,
+      </if>
+      <if test="wendu != null" >
+        WENDU,
+      </if>
+      <if test="midu != null" >
+        MIDU,
+      </if>
+      <if test="fystyle != null" >
+        FYSTYLE,
+      </if>
+      <if test="fa != null" >
+        FA,
+      </if>
+      <if test="fb != null" >
+        FB,
+      </if>
+      <if test="yybj != null" >
+        YYBJ,
+      </if>
+      <if test="jdbj != null" >
+        JDBJ,
+      </if>
+      <if test="yb != null" >
+        YB,
+      </if>
+      <if test="state != null" >
+        STATE,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="hwh != null" >
+        #{hwh,jdbcType=INTEGER},
+      </if>
+      <if test="dyth != null" >
+        #{dyth,jdbcType=INTEGER},
+      </if>
+      <if test="dylh != null" >
+        #{dylh,jdbcType=INTEGER},
+      </if>
+      <if test="tdh != null" >
+        #{tdh,jdbcType=VARCHAR},
+      </if>
+      <if test="ypmc != null" >
+        #{ypmc,jdbcType=VARCHAR},
+      </if>
+      <if test="ybxs != null" >
+        #{ybxs,jdbcType=REAL},
+      </if>
+      <if test="chehao != null" >
+        #{chehao,jdbcType=VARCHAR},
+      </if>
+      <if test="dfgs != null" >
+        #{dfgs,jdbcType=INTEGER},
+      </if>
+      <if test="yfgs != null" >
+        #{yfgs,jdbcType=INTEGER},
+      </if>
+      <if test="yfl != null" >
+        #{yfl,jdbcType=REAL},
+      </if>
+      <if test="sfl != null" >
+        #{sfl,jdbcType=REAL},
+      </if>
+      <if test="wendu != null" >
+        #{wendu,jdbcType=REAL},
+      </if>
+      <if test="midu != null" >
+        #{midu,jdbcType=REAL},
+      </if>
+      <if test="fystyle != null" >
+        #{fystyle,jdbcType=INTEGER},
+      </if>
+      <if test="fa != null" >
+        #{fa,jdbcType=INTEGER},
+      </if>
+      <if test="fb != null" >
+        #{fb,jdbcType=INTEGER},
+      </if>
+      <if test="yybj != null" >
+        #{yybj,jdbcType=INTEGER},
+      </if>
+      <if test="jdbj != null" >
+        #{jdbj,jdbcType=INTEGER},
+      </if>
+      <if test="yb != null" >
+        #{yb,jdbcType=INTEGER},
+      </if>
+      <if test="state != null" >
+        #{state,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.unicorn.tlgasoline.entity.WatchingExample" resultType="java.lang.Integer" >
+    select count(*) from Watching
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update Watching
+    <set >
+      <if test="record.hwh != null" >
+        HWH = #{record.hwh,jdbcType=INTEGER},
+      </if>
+      <if test="record.dyth != null" >
+        Dyth = #{record.dyth,jdbcType=INTEGER},
+      </if>
+      <if test="record.dylh != null" >
+        Dylh = #{record.dylh,jdbcType=INTEGER},
+      </if>
+      <if test="record.tdh != null" >
+        TDH = #{record.tdh,jdbcType=VARCHAR},
+      </if>
+      <if test="record.ypmc != null" >
+        YPMC = #{record.ypmc,jdbcType=VARCHAR},
+      </if>
+      <if test="record.ybxs != null" >
+        YBXS = #{record.ybxs,jdbcType=REAL},
+      </if>
+      <if test="record.chehao != null" >
+        CHEHAO = #{record.chehao,jdbcType=VARCHAR},
+      </if>
+      <if test="record.dfgs != null" >
+        DFGS = #{record.dfgs,jdbcType=INTEGER},
+      </if>
+      <if test="record.yfgs != null" >
+        YFGS = #{record.yfgs,jdbcType=INTEGER},
+      </if>
+      <if test="record.yfl != null" >
+        YFL = #{record.yfl,jdbcType=REAL},
+      </if>
+      <if test="record.sfl != null" >
+        SFL = #{record.sfl,jdbcType=REAL},
+      </if>
+      <if test="record.wendu != null" >
+        WENDU = #{record.wendu,jdbcType=REAL},
+      </if>
+      <if test="record.midu != null" >
+        MIDU = #{record.midu,jdbcType=REAL},
+      </if>
+      <if test="record.fystyle != null" >
+        FYSTYLE = #{record.fystyle,jdbcType=INTEGER},
+      </if>
+      <if test="record.fa != null" >
+        FA = #{record.fa,jdbcType=INTEGER},
+      </if>
+      <if test="record.fb != null" >
+        FB = #{record.fb,jdbcType=INTEGER},
+      </if>
+      <if test="record.yybj != null" >
+        YYBJ = #{record.yybj,jdbcType=INTEGER},
+      </if>
+      <if test="record.jdbj != null" >
+        JDBJ = #{record.jdbj,jdbcType=INTEGER},
+      </if>
+      <if test="record.yb != null" >
+        YB = #{record.yb,jdbcType=INTEGER},
+      </if>
+      <if test="record.state != null" >
+        STATE = #{record.state,jdbcType=INTEGER},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update Watching
+    set HWH = #{record.hwh,jdbcType=INTEGER},
+      Dyth = #{record.dyth,jdbcType=INTEGER},
+      Dylh = #{record.dylh,jdbcType=INTEGER},
+      TDH = #{record.tdh,jdbcType=VARCHAR},
+      YPMC = #{record.ypmc,jdbcType=VARCHAR},
+      YBXS = #{record.ybxs,jdbcType=REAL},
+      CHEHAO = #{record.chehao,jdbcType=VARCHAR},
+      DFGS = #{record.dfgs,jdbcType=INTEGER},
+      YFGS = #{record.yfgs,jdbcType=INTEGER},
+      YFL = #{record.yfl,jdbcType=REAL},
+      SFL = #{record.sfl,jdbcType=REAL},
+      WENDU = #{record.wendu,jdbcType=REAL},
+      MIDU = #{record.midu,jdbcType=REAL},
+      FYSTYLE = #{record.fystyle,jdbcType=INTEGER},
+      FA = #{record.fa,jdbcType=INTEGER},
+      FB = #{record.fb,jdbcType=INTEGER},
+      YYBJ = #{record.yybj,jdbcType=INTEGER},
+      JDBJ = #{record.jdbj,jdbcType=INTEGER},
+      YB = #{record.yb,jdbcType=INTEGER},
+      STATE = #{record.state,jdbcType=INTEGER}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+</mapper>

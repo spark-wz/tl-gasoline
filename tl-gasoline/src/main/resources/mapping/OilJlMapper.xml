@@ -1,0 +1,712 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.unicorn.tlgasoline.dao.OilJlMapper" >
+  <resultMap id="BaseResultMap" type="com.unicorn.tlgasoline.entity.OilJl" >
+    <id column="ID" property="id" jdbcType="INTEGER" />
+    <result column="FYDATE" property="fydate" jdbcType="VARCHAR" />
+    <result column="FYSTTIME" property="fysttime" jdbcType="CHAR" />
+    <result column="FYEDTIME" property="fyedtime" jdbcType="CHAR" />
+    <result column="HWH" property="hwh" jdbcType="SMALLINT" />
+    <result column="DYTH" property="dyth" jdbcType="SMALLINT" />
+    <result column="DYLH" property="dylh" jdbcType="SMALLINT" />
+    <result column="XSD" property="xsd" jdbcType="CHAR" />
+    <result column="TDH" property="tdh" jdbcType="CHAR" />
+    <result column="YPMC" property="ypmc" jdbcType="CHAR" />
+    <result column="YFL" property="yfl" jdbcType="REAL" />
+    <result column="MIDU" property="midu" jdbcType="REAL" />
+    <result column="WENDU" property="wendu" jdbcType="REAL" />
+    <result column="SFL" property="sfl" jdbcType="REAL" />
+    <result column="CHEHAO" property="chehao" jdbcType="CHAR" />
+    <result column="FYSTYLE" property="fystyle" jdbcType="CHAR" />
+    <result column="THDW" property="thdw" jdbcType="CHAR" />
+    <result column="KPDW" property="kpdw" jdbcType="CHAR" />
+    <result column="LEIJIL" property="leijil" jdbcType="REAL" />
+    <result column="KPR" property="kpr" jdbcType="CHAR" />
+    <result column="FYGH" property="fygh" jdbcType="CHAR" />
+    <result column="CXDATETIME" property="cxdatetime" jdbcType="CHAR" />
+    <result column="DYL" property="dyl" jdbcType="REAL" />
+    <result column="JLSTYLE" property="jlstyle" jdbcType="CHAR" />
+    <result column="SINGLEYFZL" property="singleyfzl" jdbcType="REAL" />
+    <result column="SINGLEYFTJ" property="singleyftj" jdbcType="REAL" />
+    <result column="SINGLESFZL" property="singlesfzl" jdbcType="REAL" />
+    <result column="SINGLESFTJ" property="singlesftj" jdbcType="REAL" />
+    <result column="STYLE" property="style" jdbcType="CHAR" />
+    <result column="WLBM" property="wlbm" jdbcType="CHAR" />
+    <result column="KHBM" property="khbm" jdbcType="CHAR" />
+    <result column="YKBM" property="ykbm" jdbcType="CHAR" />
+    <result column="YKMC" property="ykmc" jdbcType="CHAR" />
+    <result column="Prt_FLAG" property="prtFlag" jdbcType="INTEGER" />
+    <result column="SERAL" property="seral" jdbcType="CHAR" />
+    <result column="style_fy" property="styleFy" jdbcType="CHAR" />
+    <result column="CardCheckTime" property="cardchecktime" jdbcType="CHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    ID, FYDATE, FYSTTIME, FYEDTIME, HWH, DYTH, DYLH, XSD, TDH, YPMC, YFL, MIDU, WENDU, 
+    SFL, CHEHAO, FYSTYLE, THDW, KPDW, LEIJIL, KPR, FYGH, CXDATETIME, DYL, JLSTYLE, SINGLEYFZL, 
+    SINGLEYFTJ, SINGLESFZL, SINGLESFTJ, STYLE, WLBM, KHBM, YKBM, YKMC, Prt_FLAG, SERAL, 
+    style_fy, CardCheckTime
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.unicorn.tlgasoline.entity.OilJlExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from Oil_jl
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from Oil_jl
+    where ID = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from Oil_jl
+    where ID = #{id,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.unicorn.tlgasoline.entity.OilJlExample" >
+    delete from Oil_jl
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.unicorn.tlgasoline.entity.OilJl" >
+    insert into Oil_jl (ID, FYDATE, FYSTTIME, 
+      FYEDTIME, HWH, DYTH, 
+      DYLH, XSD, TDH, YPMC, 
+      YFL, MIDU, WENDU, SFL, 
+      CHEHAO, FYSTYLE, THDW, KPDW, 
+      LEIJIL, KPR, FYGH, CXDATETIME, 
+      DYL, JLSTYLE, SINGLEYFZL, SINGLEYFTJ, 
+      SINGLESFZL, SINGLESFTJ, STYLE, 
+      WLBM, KHBM, YKBM, YKMC, 
+      Prt_FLAG, SERAL, style_fy, 
+      CardCheckTime)
+    values (#{id,jdbcType=INTEGER}, #{fydate,jdbcType=VARCHAR}, #{fysttime,jdbcType=CHAR}, 
+      #{fyedtime,jdbcType=CHAR}, #{hwh,jdbcType=SMALLINT}, #{dyth,jdbcType=SMALLINT}, 
+      #{dylh,jdbcType=SMALLINT}, #{xsd,jdbcType=CHAR}, #{tdh,jdbcType=CHAR}, #{ypmc,jdbcType=CHAR}, 
+      #{yfl,jdbcType=REAL}, #{midu,jdbcType=REAL}, #{wendu,jdbcType=REAL}, #{sfl,jdbcType=REAL}, 
+      #{chehao,jdbcType=CHAR}, #{fystyle,jdbcType=CHAR}, #{thdw,jdbcType=CHAR}, #{kpdw,jdbcType=CHAR}, 
+      #{leijil,jdbcType=REAL}, #{kpr,jdbcType=CHAR}, #{fygh,jdbcType=CHAR}, #{cxdatetime,jdbcType=CHAR}, 
+      #{dyl,jdbcType=REAL}, #{jlstyle,jdbcType=CHAR}, #{singleyfzl,jdbcType=REAL}, #{singleyftj,jdbcType=REAL}, 
+      #{singlesfzl,jdbcType=REAL}, #{singlesftj,jdbcType=REAL}, #{style,jdbcType=CHAR}, 
+      #{wlbm,jdbcType=CHAR}, #{khbm,jdbcType=CHAR}, #{ykbm,jdbcType=CHAR}, #{ykmc,jdbcType=CHAR}, 
+      #{prtFlag,jdbcType=INTEGER}, #{seral,jdbcType=CHAR}, #{styleFy,jdbcType=CHAR}, 
+      #{cardchecktime,jdbcType=CHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.unicorn.tlgasoline.entity.OilJl" >
+    insert into Oil_jl
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        ID,
+      </if>
+      <if test="fydate != null" >
+        FYDATE,
+      </if>
+      <if test="fysttime != null" >
+        FYSTTIME,
+      </if>
+      <if test="fyedtime != null" >
+        FYEDTIME,
+      </if>
+      <if test="hwh != null" >
+        HWH,
+      </if>
+      <if test="dyth != null" >
+        DYTH,
+      </if>
+      <if test="dylh != null" >
+        DYLH,
+      </if>
+      <if test="xsd != null" >
+        XSD,
+      </if>
+      <if test="tdh != null" >
+        TDH,
+      </if>
+      <if test="ypmc != null" >
+        YPMC,
+      </if>
+      <if test="yfl != null" >
+        YFL,
+      </if>
+      <if test="midu != null" >
+        MIDU,
+      </if>
+      <if test="wendu != null" >
+        WENDU,
+      </if>
+      <if test="sfl != null" >
+        SFL,
+      </if>
+      <if test="chehao != null" >
+        CHEHAO,
+      </if>
+      <if test="fystyle != null" >
+        FYSTYLE,
+      </if>
+      <if test="thdw != null" >
+        THDW,
+      </if>
+      <if test="kpdw != null" >
+        KPDW,
+      </if>
+      <if test="leijil != null" >
+        LEIJIL,
+      </if>
+      <if test="kpr != null" >
+        KPR,
+      </if>
+      <if test="fygh != null" >
+        FYGH,
+      </if>
+      <if test="cxdatetime != null" >
+        CXDATETIME,
+      </if>
+      <if test="dyl != null" >
+        DYL,
+      </if>
+      <if test="jlstyle != null" >
+        JLSTYLE,
+      </if>
+      <if test="singleyfzl != null" >
+        SINGLEYFZL,
+      </if>
+      <if test="singleyftj != null" >
+        SINGLEYFTJ,
+      </if>
+      <if test="singlesfzl != null" >
+        SINGLESFZL,
+      </if>
+      <if test="singlesftj != null" >
+        SINGLESFTJ,
+      </if>
+      <if test="style != null" >
+        STYLE,
+      </if>
+      <if test="wlbm != null" >
+        WLBM,
+      </if>
+      <if test="khbm != null" >
+        KHBM,
+      </if>
+      <if test="ykbm != null" >
+        YKBM,
+      </if>
+      <if test="ykmc != null" >
+        YKMC,
+      </if>
+      <if test="prtFlag != null" >
+        Prt_FLAG,
+      </if>
+      <if test="seral != null" >
+        SERAL,
+      </if>
+      <if test="styleFy != null" >
+        style_fy,
+      </if>
+      <if test="cardchecktime != null" >
+        CardCheckTime,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="fydate != null" >
+        #{fydate,jdbcType=VARCHAR},
+      </if>
+      <if test="fysttime != null" >
+        #{fysttime,jdbcType=CHAR},
+      </if>
+      <if test="fyedtime != null" >
+        #{fyedtime,jdbcType=CHAR},
+      </if>
+      <if test="hwh != null" >
+        #{hwh,jdbcType=SMALLINT},
+      </if>
+      <if test="dyth != null" >
+        #{dyth,jdbcType=SMALLINT},
+      </if>
+      <if test="dylh != null" >
+        #{dylh,jdbcType=SMALLINT},
+      </if>
+      <if test="xsd != null" >
+        #{xsd,jdbcType=CHAR},
+      </if>
+      <if test="tdh != null" >
+        #{tdh,jdbcType=CHAR},
+      </if>
+      <if test="ypmc != null" >
+        #{ypmc,jdbcType=CHAR},
+      </if>
+      <if test="yfl != null" >
+        #{yfl,jdbcType=REAL},
+      </if>
+      <if test="midu != null" >
+        #{midu,jdbcType=REAL},
+      </if>
+      <if test="wendu != null" >
+        #{wendu,jdbcType=REAL},
+      </if>
+      <if test="sfl != null" >
+        #{sfl,jdbcType=REAL},
+      </if>
+      <if test="chehao != null" >
+        #{chehao,jdbcType=CHAR},
+      </if>
+      <if test="fystyle != null" >
+        #{fystyle,jdbcType=CHAR},
+      </if>
+      <if test="thdw != null" >
+        #{thdw,jdbcType=CHAR},
+      </if>
+      <if test="kpdw != null" >
+        #{kpdw,jdbcType=CHAR},
+      </if>
+      <if test="leijil != null" >
+        #{leijil,jdbcType=REAL},
+      </if>
+      <if test="kpr != null" >
+        #{kpr,jdbcType=CHAR},
+      </if>
+      <if test="fygh != null" >
+        #{fygh,jdbcType=CHAR},
+      </if>
+      <if test="cxdatetime != null" >
+        #{cxdatetime,jdbcType=CHAR},
+      </if>
+      <if test="dyl != null" >
+        #{dyl,jdbcType=REAL},
+      </if>
+      <if test="jlstyle != null" >
+        #{jlstyle,jdbcType=CHAR},
+      </if>
+      <if test="singleyfzl != null" >
+        #{singleyfzl,jdbcType=REAL},
+      </if>
+      <if test="singleyftj != null" >
+        #{singleyftj,jdbcType=REAL},
+      </if>
+      <if test="singlesfzl != null" >
+        #{singlesfzl,jdbcType=REAL},
+      </if>
+      <if test="singlesftj != null" >
+        #{singlesftj,jdbcType=REAL},
+      </if>
+      <if test="style != null" >
+        #{style,jdbcType=CHAR},
+      </if>
+      <if test="wlbm != null" >
+        #{wlbm,jdbcType=CHAR},
+      </if>
+      <if test="khbm != null" >
+        #{khbm,jdbcType=CHAR},
+      </if>
+      <if test="ykbm != null" >
+        #{ykbm,jdbcType=CHAR},
+      </if>
+      <if test="ykmc != null" >
+        #{ykmc,jdbcType=CHAR},
+      </if>
+      <if test="prtFlag != null" >
+        #{prtFlag,jdbcType=INTEGER},
+      </if>
+      <if test="seral != null" >
+        #{seral,jdbcType=CHAR},
+      </if>
+      <if test="styleFy != null" >
+        #{styleFy,jdbcType=CHAR},
+      </if>
+      <if test="cardchecktime != null" >
+        #{cardchecktime,jdbcType=CHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.unicorn.tlgasoline.entity.OilJlExample" resultType="java.lang.Integer" >
+    select count(*) from Oil_jl
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update Oil_jl
+    <set >
+      <if test="record.id != null" >
+        ID = #{record.id,jdbcType=INTEGER},
+      </if>
+      <if test="record.fydate != null" >
+        FYDATE = #{record.fydate,jdbcType=VARCHAR},
+      </if>
+      <if test="record.fysttime != null" >
+        FYSTTIME = #{record.fysttime,jdbcType=CHAR},
+      </if>
+      <if test="record.fyedtime != null" >
+        FYEDTIME = #{record.fyedtime,jdbcType=CHAR},
+      </if>
+      <if test="record.hwh != null" >
+        HWH = #{record.hwh,jdbcType=SMALLINT},
+      </if>
+      <if test="record.dyth != null" >
+        DYTH = #{record.dyth,jdbcType=SMALLINT},
+      </if>
+      <if test="record.dylh != null" >
+        DYLH = #{record.dylh,jdbcType=SMALLINT},
+      </if>
+      <if test="record.xsd != null" >
+        XSD = #{record.xsd,jdbcType=CHAR},
+      </if>
+      <if test="record.tdh != null" >
+        TDH = #{record.tdh,jdbcType=CHAR},
+      </if>
+      <if test="record.ypmc != null" >
+        YPMC = #{record.ypmc,jdbcType=CHAR},
+      </if>
+      <if test="record.yfl != null" >
+        YFL = #{record.yfl,jdbcType=REAL},
+      </if>
+      <if test="record.midu != null" >
+        MIDU = #{record.midu,jdbcType=REAL},
+      </if>
+      <if test="record.wendu != null" >
+        WENDU = #{record.wendu,jdbcType=REAL},
+      </if>
+      <if test="record.sfl != null" >
+        SFL = #{record.sfl,jdbcType=REAL},
+      </if>
+      <if test="record.chehao != null" >
+        CHEHAO = #{record.chehao,jdbcType=CHAR},
+      </if>
+      <if test="record.fystyle != null" >
+        FYSTYLE = #{record.fystyle,jdbcType=CHAR},
+      </if>
+      <if test="record.thdw != null" >
+        THDW = #{record.thdw,jdbcType=CHAR},
+      </if>
+      <if test="record.kpdw != null" >
+        KPDW = #{record.kpdw,jdbcType=CHAR},
+      </if>
+      <if test="record.leijil != null" >
+        LEIJIL = #{record.leijil,jdbcType=REAL},
+      </if>
+      <if test="record.kpr != null" >
+        KPR = #{record.kpr,jdbcType=CHAR},
+      </if>
+      <if test="record.fygh != null" >
+        FYGH = #{record.fygh,jdbcType=CHAR},
+      </if>
+      <if test="record.cxdatetime != null" >
+        CXDATETIME = #{record.cxdatetime,jdbcType=CHAR},
+      </if>
+      <if test="record.dyl != null" >
+        DYL = #{record.dyl,jdbcType=REAL},
+      </if>
+      <if test="record.jlstyle != null" >
+        JLSTYLE = #{record.jlstyle,jdbcType=CHAR},
+      </if>
+      <if test="record.singleyfzl != null" >
+        SINGLEYFZL = #{record.singleyfzl,jdbcType=REAL},
+      </if>
+      <if test="record.singleyftj != null" >
+        SINGLEYFTJ = #{record.singleyftj,jdbcType=REAL},
+      </if>
+      <if test="record.singlesfzl != null" >
+        SINGLESFZL = #{record.singlesfzl,jdbcType=REAL},
+      </if>
+      <if test="record.singlesftj != null" >
+        SINGLESFTJ = #{record.singlesftj,jdbcType=REAL},
+      </if>
+      <if test="record.style != null" >
+        STYLE = #{record.style,jdbcType=CHAR},
+      </if>
+      <if test="record.wlbm != null" >
+        WLBM = #{record.wlbm,jdbcType=CHAR},
+      </if>
+      <if test="record.khbm != null" >
+        KHBM = #{record.khbm,jdbcType=CHAR},
+      </if>
+      <if test="record.ykbm != null" >
+        YKBM = #{record.ykbm,jdbcType=CHAR},
+      </if>
+      <if test="record.ykmc != null" >
+        YKMC = #{record.ykmc,jdbcType=CHAR},
+      </if>
+      <if test="record.prtFlag != null" >
+        Prt_FLAG = #{record.prtFlag,jdbcType=INTEGER},
+      </if>
+      <if test="record.seral != null" >
+        SERAL = #{record.seral,jdbcType=CHAR},
+      </if>
+      <if test="record.styleFy != null" >
+        style_fy = #{record.styleFy,jdbcType=CHAR},
+      </if>
+      <if test="record.cardchecktime != null" >
+        CardCheckTime = #{record.cardchecktime,jdbcType=CHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update Oil_jl
+    set ID = #{record.id,jdbcType=INTEGER},
+      FYDATE = #{record.fydate,jdbcType=VARCHAR},
+      FYSTTIME = #{record.fysttime,jdbcType=CHAR},
+      FYEDTIME = #{record.fyedtime,jdbcType=CHAR},
+      HWH = #{record.hwh,jdbcType=SMALLINT},
+      DYTH = #{record.dyth,jdbcType=SMALLINT},
+      DYLH = #{record.dylh,jdbcType=SMALLINT},
+      XSD = #{record.xsd,jdbcType=CHAR},
+      TDH = #{record.tdh,jdbcType=CHAR},
+      YPMC = #{record.ypmc,jdbcType=CHAR},
+      YFL = #{record.yfl,jdbcType=REAL},
+      MIDU = #{record.midu,jdbcType=REAL},
+      WENDU = #{record.wendu,jdbcType=REAL},
+      SFL = #{record.sfl,jdbcType=REAL},
+      CHEHAO = #{record.chehao,jdbcType=CHAR},
+      FYSTYLE = #{record.fystyle,jdbcType=CHAR},
+      THDW = #{record.thdw,jdbcType=CHAR},
+      KPDW = #{record.kpdw,jdbcType=CHAR},
+      LEIJIL = #{record.leijil,jdbcType=REAL},
+      KPR = #{record.kpr,jdbcType=CHAR},
+      FYGH = #{record.fygh,jdbcType=CHAR},
+      CXDATETIME = #{record.cxdatetime,jdbcType=CHAR},
+      DYL = #{record.dyl,jdbcType=REAL},
+      JLSTYLE = #{record.jlstyle,jdbcType=CHAR},
+      SINGLEYFZL = #{record.singleyfzl,jdbcType=REAL},
+      SINGLEYFTJ = #{record.singleyftj,jdbcType=REAL},
+      SINGLESFZL = #{record.singlesfzl,jdbcType=REAL},
+      SINGLESFTJ = #{record.singlesftj,jdbcType=REAL},
+      STYLE = #{record.style,jdbcType=CHAR},
+      WLBM = #{record.wlbm,jdbcType=CHAR},
+      KHBM = #{record.khbm,jdbcType=CHAR},
+      YKBM = #{record.ykbm,jdbcType=CHAR},
+      YKMC = #{record.ykmc,jdbcType=CHAR},
+      Prt_FLAG = #{record.prtFlag,jdbcType=INTEGER},
+      SERAL = #{record.seral,jdbcType=CHAR},
+      style_fy = #{record.styleFy,jdbcType=CHAR},
+      CardCheckTime = #{record.cardchecktime,jdbcType=CHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.unicorn.tlgasoline.entity.OilJl" >
+    update Oil_jl
+    <set >
+      <if test="fydate != null" >
+        FYDATE = #{fydate,jdbcType=VARCHAR},
+      </if>
+      <if test="fysttime != null" >
+        FYSTTIME = #{fysttime,jdbcType=CHAR},
+      </if>
+      <if test="fyedtime != null" >
+        FYEDTIME = #{fyedtime,jdbcType=CHAR},
+      </if>
+      <if test="hwh != null" >
+        HWH = #{hwh,jdbcType=SMALLINT},
+      </if>
+      <if test="dyth != null" >
+        DYTH = #{dyth,jdbcType=SMALLINT},
+      </if>
+      <if test="dylh != null" >
+        DYLH = #{dylh,jdbcType=SMALLINT},
+      </if>
+      <if test="xsd != null" >
+        XSD = #{xsd,jdbcType=CHAR},
+      </if>
+      <if test="tdh != null" >
+        TDH = #{tdh,jdbcType=CHAR},
+      </if>
+      <if test="ypmc != null" >
+        YPMC = #{ypmc,jdbcType=CHAR},
+      </if>
+      <if test="yfl != null" >
+        YFL = #{yfl,jdbcType=REAL},
+      </if>
+      <if test="midu != null" >
+        MIDU = #{midu,jdbcType=REAL},
+      </if>
+      <if test="wendu != null" >
+        WENDU = #{wendu,jdbcType=REAL},
+      </if>
+      <if test="sfl != null" >
+        SFL = #{sfl,jdbcType=REAL},
+      </if>
+      <if test="chehao != null" >
+        CHEHAO = #{chehao,jdbcType=CHAR},
+      </if>
+      <if test="fystyle != null" >
+        FYSTYLE = #{fystyle,jdbcType=CHAR},
+      </if>
+      <if test="thdw != null" >
+        THDW = #{thdw,jdbcType=CHAR},
+      </if>
+      <if test="kpdw != null" >
+        KPDW = #{kpdw,jdbcType=CHAR},
+      </if>
+      <if test="leijil != null" >
+        LEIJIL = #{leijil,jdbcType=REAL},
+      </if>
+      <if test="kpr != null" >
+        KPR = #{kpr,jdbcType=CHAR},
+      </if>
+      <if test="fygh != null" >
+        FYGH = #{fygh,jdbcType=CHAR},
+      </if>
+      <if test="cxdatetime != null" >
+        CXDATETIME = #{cxdatetime,jdbcType=CHAR},
+      </if>
+      <if test="dyl != null" >
+        DYL = #{dyl,jdbcType=REAL},
+      </if>
+      <if test="jlstyle != null" >
+        JLSTYLE = #{jlstyle,jdbcType=CHAR},
+      </if>
+      <if test="singleyfzl != null" >
+        SINGLEYFZL = #{singleyfzl,jdbcType=REAL},
+      </if>
+      <if test="singleyftj != null" >
+        SINGLEYFTJ = #{singleyftj,jdbcType=REAL},
+      </if>
+      <if test="singlesfzl != null" >
+        SINGLESFZL = #{singlesfzl,jdbcType=REAL},
+      </if>
+      <if test="singlesftj != null" >
+        SINGLESFTJ = #{singlesftj,jdbcType=REAL},
+      </if>
+      <if test="style != null" >
+        STYLE = #{style,jdbcType=CHAR},
+      </if>
+      <if test="wlbm != null" >
+        WLBM = #{wlbm,jdbcType=CHAR},
+      </if>
+      <if test="khbm != null" >
+        KHBM = #{khbm,jdbcType=CHAR},
+      </if>
+      <if test="ykbm != null" >
+        YKBM = #{ykbm,jdbcType=CHAR},
+      </if>
+      <if test="ykmc != null" >
+        YKMC = #{ykmc,jdbcType=CHAR},
+      </if>
+      <if test="prtFlag != null" >
+        Prt_FLAG = #{prtFlag,jdbcType=INTEGER},
+      </if>
+      <if test="seral != null" >
+        SERAL = #{seral,jdbcType=CHAR},
+      </if>
+      <if test="styleFy != null" >
+        style_fy = #{styleFy,jdbcType=CHAR},
+      </if>
+      <if test="cardchecktime != null" >
+        CardCheckTime = #{cardchecktime,jdbcType=CHAR},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.unicorn.tlgasoline.entity.OilJl" >
+    update Oil_jl
+    set FYDATE = #{fydate,jdbcType=VARCHAR},
+      FYSTTIME = #{fysttime,jdbcType=CHAR},
+      FYEDTIME = #{fyedtime,jdbcType=CHAR},
+      HWH = #{hwh,jdbcType=SMALLINT},
+      DYTH = #{dyth,jdbcType=SMALLINT},
+      DYLH = #{dylh,jdbcType=SMALLINT},
+      XSD = #{xsd,jdbcType=CHAR},
+      TDH = #{tdh,jdbcType=CHAR},
+      YPMC = #{ypmc,jdbcType=CHAR},
+      YFL = #{yfl,jdbcType=REAL},
+      MIDU = #{midu,jdbcType=REAL},
+      WENDU = #{wendu,jdbcType=REAL},
+      SFL = #{sfl,jdbcType=REAL},
+      CHEHAO = #{chehao,jdbcType=CHAR},
+      FYSTYLE = #{fystyle,jdbcType=CHAR},
+      THDW = #{thdw,jdbcType=CHAR},
+      KPDW = #{kpdw,jdbcType=CHAR},
+      LEIJIL = #{leijil,jdbcType=REAL},
+      KPR = #{kpr,jdbcType=CHAR},
+      FYGH = #{fygh,jdbcType=CHAR},
+      CXDATETIME = #{cxdatetime,jdbcType=CHAR},
+      DYL = #{dyl,jdbcType=REAL},
+      JLSTYLE = #{jlstyle,jdbcType=CHAR},
+      SINGLEYFZL = #{singleyfzl,jdbcType=REAL},
+      SINGLEYFTJ = #{singleyftj,jdbcType=REAL},
+      SINGLESFZL = #{singlesfzl,jdbcType=REAL},
+      SINGLESFTJ = #{singlesftj,jdbcType=REAL},
+      STYLE = #{style,jdbcType=CHAR},
+      WLBM = #{wlbm,jdbcType=CHAR},
+      KHBM = #{khbm,jdbcType=CHAR},
+      YKBM = #{ykbm,jdbcType=CHAR},
+      YKMC = #{ykmc,jdbcType=CHAR},
+      Prt_FLAG = #{prtFlag,jdbcType=INTEGER},
+      SERAL = #{seral,jdbcType=CHAR},
+      style_fy = #{styleFy,jdbcType=CHAR},
+      CardCheckTime = #{cardchecktime,jdbcType=CHAR}
+    where ID = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>
